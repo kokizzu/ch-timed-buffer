@@ -13,7 +13,7 @@ func main() {
 
 	shared.InitTableAndTruncate(conn)
 
-	tb := ch_timed_buffer.NewTimedBuffer(conn, 10, 100*time.Millisecond, shared.PrepareFunc)
+	tb := chBuffer.NewTimedBuffer(conn, 10, 100*time.Millisecond, shared.PrepareFunc)
 
 	time.Sleep(1 * time.Second)
 

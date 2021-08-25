@@ -1,4 +1,4 @@
-package ch_timed_buffer
+package chBuffer
 
 import (
 	"database/sql"

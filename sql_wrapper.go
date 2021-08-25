@@ -1,4 +1,4 @@
-package ch_timed_buffer
+package chBuffer
 
 import (
 	"context"
@@ -89,21 +89,21 @@ func LogSql(res interface{}, sql string, params ...interface{}) {
 	}
 }
 
-func TraceSqlExec(db *sql.Conn, query string, params ...interface{}) (sql.Result, error) {
+func TraceSqlExec(db *sql.DB, query string, params ...interface{}) (sql.Result, error) {
 	if DebugMode() {
 		fmt.Println(sqlReplacer(query, params...))
 	}
 	return db.ExecContext(context.Background(), query, params...)
 }
 
-func TraceSqlRows(db *sql.Conn, query string, params ...interface{}) (*sql.Rows, error) {
+func TraceSqlRows(db *sql.DB, query string, params ...interface{}) (*sql.Rows, error) {
 	if DebugMode() {
 		fmt.Println(sqlReplacer(query, params...))
 	}
 	return db.QueryContext(context.Background(), query, params...)
 }
 
-func TraceSqlRow(db *sql.Conn, query string, params ...interface{}) *sql.Row {
+func TraceSqlRow(db *sql.DB, query string, params ...interface{}) *sql.Row {
 	if DebugMode() {
 		fmt.Println(sqlReplacer(query, params...))
 	}

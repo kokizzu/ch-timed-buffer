@@ -23,7 +23,7 @@ func main() {
 
 	shared.InitTableAndTruncate(conn)
 
-	tb := ch_timed_buffer.NewTimedBuffer(conn, 10, 1*time.Second, shared.PrepareFunc)
+	tb := chBuffer.NewTimedBuffer(conn, 10, 1*time.Second, shared.PrepareFunc)
 
 	listener, err := net.Listen("tcp", ":0")
 	L.IsError(err, `failed listen, all available port used?`)

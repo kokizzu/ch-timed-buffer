@@ -21,7 +21,7 @@ create timed buffer, one per prepared statement, requirement:
 3. flush interval and shutdown delay
 4. function that create prepared statement
 ```
-tb := ch_timed_buffer.NewTimedBuffer(conn, capacity, 1*time.Second, prepareFunc)
+tb := chBuffer.NewTimedBuffer(conn, capacity, 1*time.Second, prepareFunc)
 ```
 
 if you want to exit immediately after all flushed and exit triggered, without this, might deadlock if:
