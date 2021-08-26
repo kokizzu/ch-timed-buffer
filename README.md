@@ -45,6 +45,11 @@ add callback to gracefully close other goroutine (eg. webserver) if needed, see 
 tb.OnExitCallback = func() {}
 ```
 
+ignore interrupt signal
+```
+tb.IgnoreInterrupt = true
+```
+
 enqueue the insert
 ```
 tb.Insert(...) // can be on other goroutine, it's thread safe, if insert > capacity, it would block

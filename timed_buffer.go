@@ -31,8 +31,9 @@ type TimedBuffer struct {
 	TriggerExit       chan bool          // channel to trigger force exit, equal to .Close()
 	insertQueue       chan []interface{} // channel to send data, equal to .Insert()
 
-	WaitFinalFlush chan bool // wait channel, to hold main function so it won't exit prematurely
-	Debug          bool      // if true will print triggers
+	WaitFinalFlush  chan bool // wait channel, to hold main function so it won't exit prematurely
+	Debug           bool      // if true will print triggers
+	IgnoreInterrupt bool      // if true, will not catch interrupt
 
 	// init only
 	maxBatch                     int           // maximum rows before flushing
@@ -58,7 +59,9 @@ func NewTimedBuffer(connect *sql.DB, maxBuffer int, tickDuration time.Duration, 
 		WaitFinalFlush:    make(chan bool),
 	}
 	go res.Timer()
-	go res.HandleTermSignal()
+	if res.IgnoreInterrupt {
+		go res.HandleTermSignal()
+	}
 	return &res
 }
 
