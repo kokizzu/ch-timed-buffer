@@ -196,6 +196,8 @@ func (t *TimedBuffer) HandleTermSignal() {
 	signal.Notify(interrupt, os.Interrupt, syscall.SIGQUIT)
 
 	<-interrupt
-	fmt.Println(`caught signal`, interrupt)
-	t.TriggerExit <- true
+	if !t.IgnoreInterrupt {
+		fmt.Println(`caught signal`, interrupt)
+		t.TriggerExit <- true
+	}
 }
