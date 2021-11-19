@@ -27,7 +27,7 @@ tb := chBuffer.NewTimedBuffer(conn, capacity, 1*time.Second, prepareFunc)
 if you want to exit immediately after all flushed and exit triggered, without this, might deadlock if:
 1. using multiple channel that depend each other
 2. calling `Close()` or sending `TriggerExit` twice
-```fo
+```go
 // if this value true, any code after <- WaitFinalFlush will not be called
 //   including main's defer
 tb.ForceExitOnSignal = true
