@@ -2,6 +2,7 @@ package _all_test
 
 import (
 	"fmt"
+	"github.com/kokizzu/gotro/L"
 	"net/http"
 	"os"
 	"sync"
@@ -9,7 +10,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kokizzu/ch-timed-buffer"
 	shared "github.com/kokizzu/ch-timed-buffer/0shared_test"
 	"github.com/kokizzu/goproc"
 	"github.com/kokizzu/gotro/I"
@@ -140,7 +140,7 @@ func TestTimedBufferReal(t *testing.T) {
 				v := I.ToStr(goroutineId + z)
 				//fmt.Println(v)
 				_, err := http.Get(`http://localhost:` + port + `/ingest/` + v)
-				L.IsError(err)
+				L.IsError(err, `http.Get`)
 			}
 			wg.Done()
 		}(z * ShiftCount)
@@ -148,7 +148,7 @@ func TestTimedBufferReal(t *testing.T) {
 	wg.Wait()
 
 	_, err := http.Get(`http://localhost:` + port + `/exit`)
-	L.IsError(err)
+	L.IsError(err, `http.Get`)
 
 	// wait for server shutdown
 	<-serverShutdown
