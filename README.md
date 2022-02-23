@@ -17,7 +17,7 @@ prepareFunc := func(tx *sql.Tx) *sql.Stmt {
 
 create timed buffer, one per prepared statement, requirement:
 1. clickhouse connection
-2. max buffer count, check record size so it won't use too much memory, eg. 100K x 200 byte row = will use around 2 x 20 MB (double buffer)
+2. max buffer count (capacity), measure record size so it won't use too much memory, eg. 100K x 200 byte row = will use around 2 x 20 MB (double buffer), clickhouse can ingest 600K-1 million records per second, don't set it too low (<10K) or it would throw  an error like this `code: 252, message: Too many parts (300). Merges are processing significantly slower than inserts`
 3. flush interval and shutdown delay
 4. function that create prepared statement
 ```go
