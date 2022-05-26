@@ -4,7 +4,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kokizzu/ch-timed-buffer"
+	chBuffer "github.com/kokizzu/ch-timed-buffer"
 	shared "github.com/kokizzu/ch-timed-buffer/0shared_test"
 )
 

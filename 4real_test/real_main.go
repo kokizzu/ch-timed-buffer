@@ -2,14 +2,15 @@ package main
 
 import (
 	"fmt"
-	"github.com/kokizzu/gotro/L"
 	"log"
 	"net"
 	"net/http"
 	"time"
 
+	"github.com/kokizzu/gotro/L"
+
 	"github.com/julienschmidt/httprouter"
-	"github.com/kokizzu/ch-timed-buffer"
+	chBuffer "github.com/kokizzu/ch-timed-buffer"
 	shared "github.com/kokizzu/ch-timed-buffer/0shared_test"
 	"github.com/kokizzu/gotro/I"
 	"github.com/kokizzu/gotro/S"

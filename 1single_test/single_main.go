@@ -3,8 +3,8 @@ package main
 import (
 	"time"
 
-	"github.com/kokizzu/ch-timed-buffer"
-	"github.com/kokizzu/ch-timed-buffer/0shared_test"
+	chBuffer "github.com/kokizzu/ch-timed-buffer"
+	shared "github.com/kokizzu/ch-timed-buffer/0shared_test"
 )
 
 // insert 105 items serially

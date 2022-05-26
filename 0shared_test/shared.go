@@ -5,7 +5,7 @@ import (
 	"time"
 
 	_ "github.com/ClickHouse/clickhouse-go"
-	"github.com/kokizzu/ch-timed-buffer"
+	chBuffer "github.com/kokizzu/ch-timed-buffer"
 	"github.com/kokizzu/gotro/I"
 
 	"github.com/kokizzu/gotro/L"
