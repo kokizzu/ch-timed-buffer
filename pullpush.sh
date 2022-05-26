@@ -10,6 +10,7 @@ fi
 go fmt ./...
 echo "codes formatted.."
 
+# update deps
 go get -u -v github.com/kokizzu/gotro@latest
 go mod tidy -v
 
