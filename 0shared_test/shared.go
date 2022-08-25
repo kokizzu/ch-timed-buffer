@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"time"
 
-	_ "github.com/ClickHouse/clickhouse-go"
+	_ "github.com/ClickHouse/clickhouse-go/v2"
 	chBuffer "github.com/kokizzu/ch-timed-buffer"
 	"github.com/kokizzu/gotro/I"
 
@@ -62,10 +62,10 @@ func PrepareFuncWithNo(tx *sql.Tx, no ...int) *sql.Stmt {
 func InsertValues(t *time.Time, z int) []interface{} {
 	return []interface{}{
 		S.EncodeCB63(int64(z), 1),
-		z,
-		t.Sub(time.Now()).Seconds(),
-		t.Format(DateFormat),
-		t.Format(`2006-01-02 15:04:05`),
+		uint64(z),
+		float32(t.Sub(time.Now()).Seconds()),
+		t,
+		t,
 	}
 }
 
@@ -77,7 +77,7 @@ func ConnectClickhouse() *sql.DB {
 
 func DummyCount(conn *sql.DB, no ...int) int {
 	noStr := getNo(no)
-	row := conn.QueryRow(`SELECT COUNT(1) FROM dummy` + noStr)
+	row := conn.QueryRow(`SELECT COUNT(1) FROM dummy` + noStr + ` FINAL`)
 	count := 0
 	err := row.Scan(&count)
 	L.IsError(err, `failed scan dummy count`)

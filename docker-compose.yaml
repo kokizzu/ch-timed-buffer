@@ -1,0 +1,16 @@
+version: "3.3"
+
+services:
+
+  clickhouse1:
+    image: yandex/clickhouse-server:latest # 21.11.4
+    ports:
+      - 8123:8123
+      - 9000:9000
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+#    volumes:
+#      - ./config/local.xml:/etc/clickhouse-server/config.d/local.xml
+  

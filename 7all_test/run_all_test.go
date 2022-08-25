@@ -34,7 +34,8 @@ func TestTimedBufferSingle(t *testing.T) {
 		Parameters: []string{`run`, workDir + `/../1single_test/single_main.go`},
 	})
 
-	daemon.Start(cmdId)
+	err := daemon.Start(cmdId)
+	assert.Nil(t, err)
 
 	conn := shared.ConnectClickhouse()
 	count := shared.DummyCount(conn)
@@ -54,7 +55,8 @@ func TestTimedBufferMulti(t *testing.T) {
 		Parameters: []string{`run`, workDir + `/../2multi_test/multi_main.go`},
 	})
 
-	daemon.Start(cmdId)
+	err := daemon.Start(cmdId)
+	assert.Nil(t, err)
 
 	conn := shared.ConnectClickhouse()
 	count := shared.DummyCount(conn)
@@ -173,7 +175,8 @@ func TestTimedBufferImmediateExit(t *testing.T) {
 		Parameters: []string{`run`, workDir + `/../5wait_test/wait_main.go`},
 	})
 
-	daemon.Start(cmdId)
+	err := daemon.Start(cmdId)
+	assert.Nil(t, err)
 
 	conn := shared.ConnectClickhouse()
 	count := shared.DummyCount(conn)
@@ -193,7 +196,8 @@ func TestTimedBufferNoinput(t *testing.T) {
 		Parameters: []string{`run`, workDir + `/../6noinput_test/noinput_main.go`},
 	})
 
-	daemon.Start(cmdId)
+	err := daemon.Start(cmdId)
+	assert.Nil(t, err)
 
 	conn := shared.ConnectClickhouse()
 	count := shared.DummyCount(conn)
