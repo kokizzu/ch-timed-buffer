@@ -65,3 +65,10 @@ make main func doesn't exit until last record flushed, should be the last on mai
 ```go
 <- tb.WaitFinalFlush 
 ```
+
+## Run tests
+
+`make test`
+
+![image](https://user-images.githubusercontent.com/1061610/186598659-f03d2a8a-c9ce-4d8d-bd10-110d73511807.png)
+
