@@ -13,7 +13,7 @@ goimports -w **/*.go
 echo "codes formatted.."
 
 # update deps
-go get -u -v github.com/kokizzu/gotro@latest
+go get -u -v github.com/kokizzu/gotro@latest || echo 'has error, ignoring..'
 go mod tidy
 
 # testing if has "gokil" included
@@ -34,7 +34,8 @@ read -p "Press Ctrl+C to exit, press any enter key to really commit..
 
 git commit -m "$*" && git pull && git push origin master
 
-git tag -a `ruby -e 't = Time.now; print "v#{t.year%10}.#{t.month}%02d.#{t.hour}%02d" % [t.day, t.min]'` -m "$*"
+TAG=$(ruby -e 't = Time.now; print "v1.#{t.month+(t.year-2021)*12}%02d.#{t.hour}%02d" % [t.day, t.min]')
+git tag -a "$TAG" -m "$*"
 git push --tags 
 
 # delete tag: 
